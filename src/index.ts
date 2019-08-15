@@ -40,7 +40,7 @@ class Server {
   }
 
   private initRoutes(): void {
-    this.app.use('/falanster', BaseRouter);
+    this.app.use('/api', BaseRouter);
 
     this.app.use((req, res) => {
       res.send('Route not found');

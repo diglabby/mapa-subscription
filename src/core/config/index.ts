@@ -6,7 +6,7 @@ import { getConfigByEnv } from '../utils/config.util';
 const config: any = {
   development: {
     env: 'development',
-    PORT: 3000,
+    PORT: 3001,
     mailer: {
       smtp: 'smtps://immofy-dev%404-net.de:Kmtn17!1@4-net.de',
       mail: 'immofy-dev@4-net.de',
@@ -24,7 +24,6 @@ const config: any = {
         dialect: 'sqlite',
         port: 3001,
         logging: false,
-        operatorsAliases: false,
 
         pool: {
           max: 5,
@@ -61,7 +60,7 @@ const config: any = {
   },
   prod: {
     env: 'prod',
-    PORT: 3000,
+    PORT: 3001,
     mailer: {
       smtp: 'smtps://immofy-dev%404-net.de:Kmtn17!1@4-net.de',
       mail: 'immofy-dev@4-net.de',

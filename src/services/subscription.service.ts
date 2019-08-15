@@ -1,5 +1,5 @@
 class SubscriptionService {
-  getEntries() {}
+  createSubscription(params: any) {}
 }
 
 const subscriptionService = new SubscriptionService();

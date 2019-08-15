@@ -1,13 +1,9 @@
 import * as express from 'express';
 
-import { handleRequest } from '../core/middles/service-handler.middle';
-import { subscriptionService } from '../services/subscription.service';
+import SubscriptionRouter from './subscription.routes';
 
 const router: express.Router = express.Router();
 
-router.use(
-  '/subscription',
-  handleRequest(subscriptionService.getEntries.bind(subscriptionService))
-);
+router.use(SubscriptionRouter);
 
 export default router;
