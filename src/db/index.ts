@@ -1,12 +1,13 @@
-import * as Sequelize from 'sequelize';
-import * as fs from 'fs';
+import { Sequelize, DataTypes } from 'sequelize';
 
 import config from '../core/config';
 import logger from '../core/utils/logger.util';
+import { SubscriptionModel } from './models/subscription.model';
+import { SubscriptionTypeModel } from './models/subscription-type.model';
 
 class DB {
   public db: any = {};
-  public sequelize: Sequelize.Sequelize;
+  public sequelize: any;
 
   constructor() {
     this.sequelize = new Sequelize(
@@ -20,14 +21,32 @@ class DB {
   }
 
   private initModels() {
-    fs.readdirSync(`${__dirname}/models`)
-      .filter(file => {
-        return file.endsWith('js');
-      })
-      .forEach(file => {
-        const model: any = this.sequelize.import(`${__dirname}/models/${file}`);
-        this.db[model['name']] = model;
-      });
+    SubscriptionModel.init(
+      {
+        id: { type: DataTypes.INTEGER, primaryKey: true },
+        name: DataTypes.STRING,
+        hash: DataTypes.STRING,
+        email: DataTypes.STRING,
+        type_id: DataTypes.INTEGER,
+        last_date: DataTypes.INTEGER,
+        subs_params: DataTypes.STRING
+      },
+      {
+        sequelize: this.sequelize,
+        tableName: 'Subscription'
+      }
+    );
+
+    SubscriptionTypeModel.init(
+      {
+        id: { type: DataTypes.INTEGER, primaryKey: true },
+        name: DataTypes.STRING
+      },
+      {
+        sequelize: this.sequelize,
+        tableName: 'SubscriptionType'
+      }
+    );
   }
 
   public connect(): any {
@@ -38,12 +57,23 @@ class DB {
 
         return this.sequelize.sync();
       })
+      .then(() => this.populateTable())
       .catch(error => logger.error(`Error create connection: ' ${error}`));
+  }
+
+  private async populateTable() {
+    try {
+      const subscriptionTypes = [{ name: 'I' }, { name: 'G' }, { name: 'GT' }];
+
+      await db.SubscriptionTypeModel.bulkCreate(subscriptionTypes);
+    } catch (err) {
+      logger.info(`Error populate table: ${err}`);
+    }
   }
 }
 
 const dbInstance = new DB();
 
 export default dbInstance;
-export const db = dbInstance.db;
+export const db = { ...dbInstance.sequelize.models };
 export const sequelize = dbInstance.sequelize;
