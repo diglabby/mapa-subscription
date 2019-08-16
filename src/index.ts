@@ -8,6 +8,7 @@ import DB from './db';
 
 import config from './core/config';
 import logger from './core/utils/logger.util';
+import { createMail } from './core/utils/mailer.util';
 import { handleError } from './core/middles/error-handler.middle';
 
 class Server {
@@ -22,7 +23,7 @@ class Server {
     this.start();
   }
 
-  private initConfig(): void {
+  private async initConfig() {
     if (config.env !== 'prod') {
       this.app.use(morgan('dev'));
     }
@@ -37,6 +38,8 @@ class Server {
     );
 
     this.app.use(cors(config.corsOptions));
+
+    createMail();
   }
 
   private initRoutes(): void {
