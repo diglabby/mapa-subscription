@@ -8,10 +8,10 @@ const config: any = {
     env: 'development',
     PORT: 3001,
     mailer: {
-      smtp: 'smtps://immofy-dev%404-net.de:Kmtn17!1@4-net.de',
-      mail: 'immofy-dev@4-net.de',
-      subject: 'Activate registration of Immofy: ',
-      reply: 'immofy-dev@4-net.de'
+      smtp: 'smtps://mapa@falanster.by:Mapa-Hack@falanster.by/?pool=true',
+      mail: 'mapa@falanster.by',
+      subject: 'Newsletter',
+      reply: 'mapa@falanster.by'
     },
     db: {
       credentials: {

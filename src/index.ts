@@ -8,6 +8,7 @@ import DB from './db';
 
 import config from './core/config';
 import logger from './core/utils/logger.util';
+import { emailer } from './core/utils/email.util';
 import { createMail } from './core/utils/mailer.util';
 import { handleError } from './core/middles/error-handler.middle';
 
@@ -20,6 +21,7 @@ class Server {
     this.initConfig();
     this.initRoutes();
     this.initDB();
+    emailer.initTransportSMTP();
     this.start();
   }
 
