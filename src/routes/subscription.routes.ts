@@ -11,5 +11,11 @@ subscription.post(
     subscriptionService.createSubscription.bind(subscriptionService)
   )
 );
+subscription.delete(
+  '/subscription',
+  handleRequest(
+    subscriptionService.deleteSubscription.bind(subscriptionService)
+  )
+);
 
 export default subscription;
