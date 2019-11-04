@@ -65,7 +65,10 @@ class DB {
     try {
       const subscriptionTypes = [{ name: 'I' }, { name: 'G' }, { name: 'GT' }];
 
-      await db.SubscriptionTypeModel.bulkCreate(subscriptionTypes);
+      await db.SubscriptionTypeModel.bulkCreate(subscriptionTypes, {
+        fields:["name"] ,
+        updateOnDuplicate: ["name"]
+    } );
     } catch (err) {
       logger.info(`Error populate table: ${err}`);
     }

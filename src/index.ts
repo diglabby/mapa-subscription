@@ -41,7 +41,6 @@ class Server {
 
     this.app.use(cors(config.corsOptions));
 
-    createMail();
   }
 
   private initRoutes(): void {
