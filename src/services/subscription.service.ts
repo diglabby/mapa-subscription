@@ -14,7 +14,7 @@ class SubscriptionService {
       hash,
       email: body.email,
       type_id: subscriptionType.id,
-      subs_params: JSON.stringify(body.subsParams),
+      subs_params: JSON.stringify(body.subs_params),
     };
 
     return db.SubscriptionModel.create(subscription);
