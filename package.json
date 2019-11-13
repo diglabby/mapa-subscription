@@ -4,10 +4,12 @@
   "description": "Subscription Service",
   "license": "ISC",
   "scripts": {
-    "start": "nodemon --exec ts-node src/index.ts --watch src"
+    "start": "nodemon --exec ts-node src/index.ts --watch src",
+    "mailer": "ts-node src/mailer.ts"
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "core-util-is": "^1.0.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "morgan": "^1.9.0",

@@ -3,6 +3,7 @@ import * as Bluebird from 'bluebird';
 import { db } from '../../db';
 import { emailer } from '../utils/email.util';
 import { getEntries } from './get-entries.util';
+import { now } from 'sequelize/types/lib/utils';
 
 export const determineCoordinatesInRectange = (
   lat,
@@ -20,9 +21,10 @@ export const determineCoordinatesInRectange = (
 };
 
 export const createMail = async () => {
-  const minLastTimestamp = await db.SubscriptionModel.min('last_date');
-  const minLastDate = new Date(minLastTimestamp * 1000);
-  const maxLastTimestamp = minLastDate.setMonth(minLastDate.getMonth() + 1);
+  const todayDate = new Date();
+  todayDate.setMonth(todayDate.getMonth() - 1)
+  const maxLastTimestamp = new Date().getTime()/1000;
+  const minLastTimestamp = todayDate.getTime()/1000;
 
   const entries = await getEntries(minLastTimestamp, maxLastTimestamp);
 
@@ -118,27 +120,30 @@ export const createMail = async () => {
           });
         }
 
-        console.log(email);
         emailer.sendMail({
           to: email,
           html: `
             <h1>
-              Hello ${email}! Поц!
+              Hello ${email}!
             </h1>
 
             <h2>
               Initiatives:
             </h2>
+            ${JSON.stringify(arrayListByEntries, null, 2)}
+            ${JSON.stringify(subscriptionByEntries, null, 2)}
 
             <h2>
               Geo:
             </h2>
+            ${JSON.stringify(arrayListByCoordinates, null, 2)}
+            ${JSON.stringify(subscriptionByLocation, null, 2)}
 
             <h2>
               Tag:
             </h2>
-
-            ${JSON.stringify(arrayListByEntries, null, 2)}
+            ${JSON.stringify(arrayListByTag, null, 2)}
+            ${JSON.stringify(subscriptionByTag, null, 2)}
           `
         });
       }
