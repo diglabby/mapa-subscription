@@ -5,6 +5,7 @@
   "license": "ISC",
   "scripts": {
     "start": "nodemon --exec ts-node src/index.ts --watch src",
+    "start-prod": "NODE_ENV=prod nodemon --exec ts-node src/index.ts",
     "mailer": "ts-node src/mailer.ts"
   },
   "dependencies": {
