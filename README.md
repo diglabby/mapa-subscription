@@ -10,7 +10,9 @@ Helps to implement subscriptions for Mapa
 npm i typescript -S
 - download archive
 - unzip and go to /mapa-subscription folder
-- npm install
+- then
+
+        npm install
 
 P.S.
 - update initTransportSMTP with smtp server settings or gmail credentials (src/core/utils/email.util.ts)
@@ -19,13 +21,16 @@ To use your gmail account, turn on less secure apps in your account (https://mya
 
 # run API
 
-npm start (starts development server)
+        npm start (starts development server)
+
 or
-npm start-prod (starts prod server)
+
+        npm start-prod (starts prod server)
 
 API Requests:
 -
 Examples:
+
         curl -d '{"email":"aa@sd.com", "type":"I", "last_date": "1565122640", "subs_params":{"id":"123"}}' -H "Content-Type: application/json" -X POST http://localhost:3001/api/subscription
 
         curl -d '{"hashId":"fe24b489f8862f8ba21f17539271c2f16a7062cd"}' -H "Content-Type: application/json" -X DELETE http://localhost:3001/api/subscription
@@ -34,14 +39,17 @@ Examples:
 
 Before starting the mailer, be sure to add a few lines of data to the database, either manually or through the queries above.
 
-npx ts-node src/mailer.ts
+        npx ts-node src/mailer.ts
+
 or
 (convert to js and run)
-npm i -g typescript
-ts-node src/mailer.ts
+
+        npm i -g typescript
+        ts-node src/mailer.ts
 
 
 # TODO
 
 - update and configure email template - raw data is send (src/core/utils/mailer.util.ts)
 - update initTransportSMTP with smtp server settings - gmail is used (src/core/utils/email.util.ts)
+s
