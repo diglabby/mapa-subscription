@@ -16,10 +16,10 @@ npm i typescript -S
 
 - update initTransportSMTP with smtp server settings or gmail credentials:
   - Change lines 24-25 in file src/core/utils/email.util.ts to your email credentials according to the following example:
-  `auth: {
+  ```
         user: 'yourMail@gmail.com',
         pass: 'yourMailPassword'
-      }`
+  ```
   - To use your gmail account, turn on less secure apps in your account (https://myaccount.google.com/u/1/lesssecureapps)
 - install curl/postman (to make requests)
 
@@ -53,7 +53,7 @@ or
 
 If mailer is not running then try setting in the command line:
 `set NODE_TLS_REJECT_UNAUTHORIZED=0`
-and rerunning the program
+and rerun the program
 
 # TODO
 
