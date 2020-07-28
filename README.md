@@ -53,12 +53,9 @@ or
         npm i -g typescript
         ts-node src/mailer.ts
 
-If mailer is not running then try setting in the command line:
-`set NODE_TLS_REJECT_UNAUTHORIZED=0`
-and rerun the program
+If mailer is not running then try setting in the command line `set NODE_TLS_REJECT_UNAUTHORIZED=0` and rerun the program
 
 # TODO
 
 - update and configure email template - raw data is send (src/core/utils/mailer.util.ts)
 - update initTransportSMTP with smtp server settings - gmail is used (src/core/utils/email.util.ts)
-s
