@@ -10,14 +10,20 @@ Helps to implement subscriptions for Mapa
 npm i typescript -S
 - download archive
 - unzip and go to /mapa-subscription folder
-- then
+- then run
 
         npm install
 
-P.S.
-- update initTransportSMTP with smtp server settings or gmail credentials (src/core/utils/email.util.ts)
-To use your gmail account, turn on less secure apps in your account (https://myaccount.google.com/u/1/lesssecureapps)
-- install curl/postman (to make requests) -> just google
+- update initTransportSMTP with smtp server settings or gmail credentials:
+  - Change lines 24-25 in file src/core/utils/email.util.ts to your email credentials according to the following example:
+  ```
+      auth: {
+        user: 'yourMail@gmail.com',
+        pass: 'yourMailPassword'
+      }
+  ```
+  - To use your gmail account, turn on less secure apps in your account (https://myaccount.google.com/u/1/lesssecureapps)
+- install curl/postman (to make requests)
 
 # run API
 
@@ -47,9 +53,9 @@ or
         npm i -g typescript
         ts-node src/mailer.ts
 
+If mailer is not running then try setting in the command line `set NODE_TLS_REJECT_UNAUTHORIZED=0` and rerun the program
 
 # TODO
 
 - update and configure email template - raw data is send (src/core/utils/mailer.util.ts)
 - update initTransportSMTP with smtp server settings - gmail is used (src/core/utils/email.util.ts)
-s
