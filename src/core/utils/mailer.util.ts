@@ -74,7 +74,9 @@ export const createMail = async () => {
             const { id } = JSON.parse(x.subs_params);
             const entry = entries.find(x => x.id === id);
 
-            arrayListByEntries = [...arrayListByEntries, entry];
+            if (entry){
+              arrayListByEntries = [...arrayListByEntries, entry];
+            }
           });
         }
 
