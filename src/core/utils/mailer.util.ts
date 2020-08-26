@@ -219,10 +219,11 @@ export const createMail = async () => {
 
         //TODO: change adress of images from my repository (https://artyomkr.github.io/mail-template/images/) to https://mapa.falanster.by/mapa/src/img/template
         //TODO: change adress of fonts from my repository (https://artyomkr.github.io/mail-template/fonts/) to https://mapa.falanster.by/mapa/src/img/template/fonts
-
-        emailer.sendMail({
-          to: email,
-          html:  `
+        if (initiativesBlock.length !== 0 || tagsBlock.length !== 0 || geoTagsBlock.length !== 0 ){
+          emailer.sendMail({
+            from: 'tyomik.krasnitsky@gmail.com',
+            to: email,
+            html:  `
               <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
               <html xmlns="http://www.w3.org/1999/xhtml">
                   <head>
@@ -362,7 +363,8 @@ export const createMail = async () => {
                   </body>
               </html>
           `
-        });
+          });
+        }
       }
     });
 };
